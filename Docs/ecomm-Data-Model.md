@@ -40,7 +40,7 @@ flowchart LR
   D -.-> F
 ```
 
-Because Olist is a static dump, `simulate_batches.py` splits it into **monthly batches** (by order purchase month) so you can practice incremental loads. It also injects a **product change batch** (category and weight changes) to exercise SCD Type 2.
+Because Olist is a static dump, `Scripts/Simulate-BatchFile_new.py` splits it into **monthly batches** (by order purchase month) so you can practice incremental loads. It uses Python's standard library to process CSVs without pandas, and injects a **product change batch** (category and weight changes) to exercise SCD Type 2.
 
 ## 3. Bronze (`bronze.*`)
 
@@ -133,11 +133,11 @@ erDiagram
 Requirements: Java 11 or 17, Python 3.9+.
 
 ```bash
-pip install "pyspark==3.5.*" "delta-spark==3.2.*" pandas
+pip install "pyspark==3.5.*" "delta-spark==3.2.*"
 
 # 1. Download the 9 Olist CSVs from Kaggle into data/raw/
 # 2. Split them into monthly batches (and inject a product change in 2018-01)
-python simulate_batches.py --raw data/raw --out data/batches
+python Scripts/Simulate-BatchFile_new.py --raw data/raw --out data/batches
 
 # 3. Run bronze -> silver -> gold for every batch, in order
 python olist_pipeline.py --batches-dir data/batches
