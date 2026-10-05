@@ -1,4 +1,4 @@
-# Olist Medallion Data Model (PySpark + Delta Lake)
+# Medallion Data Model (PySpark + Delta Lake)
 
 Dataset: [Olist Brazilian E-Commerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) (Kaggle, 9 CSV files, ~100k orders, 2016-09 to 2018-10).
 
